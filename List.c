@@ -168,7 +168,7 @@ int main(int argc, char const *argv[])
 		{
 			DelElem(&list1);
 		}
-		if (flog==7)
+		if (flog==7) 
 		{
 			// 退出程序，该函数位于stdlib.h
 			exit(0);
