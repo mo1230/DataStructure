@@ -76,6 +76,7 @@ Status InsertElem(LinkList *L, Dtype e, int i){
 	// 先判断i值是否符合要求
 	if (i<= 0 || i>L->node->data)
 	{	
+		printf("i值非法！\n");
 		return ERROR;
 	}
 	// 移动指针
@@ -107,6 +108,7 @@ Status DelElem(LinkList *L,int i ){
 	// 判断i值是否符合要求
 	if (i<=0 || i>L->node->data)
 	{
+		printf("i值非法！\n");
 		return ERROR;
 	}
 	// 定义一个移动指针
@@ -127,16 +129,45 @@ Status DelElem(LinkList *L,int i ){
 	return OK;
 }
 
+/*********************查询操作*************************/
+//查询单链表的长度
+Status GetLength(LinkList *L){
+	printf("单链表长度为:%d\n", L->node->data);
+	return OK;
+} 
+
+
+// 获取指定位置的值
+Status GetElem(LinkList *L, int i){
+	// 先判断i值是否符合要求
+	if (i<=0 || i>L->node->data)
+	{
+		printf("i值非法！\n");
+		return ERROR;
+	}
+	// 定义一个移动指针p
+	LinkNode *p = L->node;
+	// 移动指针p到指定位置
+	
+	for (int j = 0; j < i; ++j)
+	{
+		p = p->next;
+	}
+	printf("第%d个位置的元素为：%d\n", i, p->data);
+	return OK;
+
+}
 
 int main(int argc, char const *argv[])
 {
 	LinkList *L;
 	while(1){
+		printf("\n");
 		printf("=========================\n");
 		printf("请根据提示进行操作：\n");
-		printf("1.创建空表\n2.对链表进行赋值\n3.插入操作\n4.删除操作\n5.====\n6.====\n7.退出\n");
+		printf("1.创建空表\n2.对链表进行赋值\n3.插入操作\n4.删除操作\n5.查询单链表长度\n6.获取指定位置的值\n7.退出\n");
 		printf("=========================\n");
-
+		printf("\n");
 		
 		int flog;
 		scanf("%d", &flog);
@@ -167,19 +198,22 @@ int main(int argc, char const *argv[])
 		}
 		if (flog==4)
 		{
-			printf("您要删除第几个元素\n");
+			printf("您要删除第几个元素：\n");
 			int i;
 			scanf("%d",&i);
 			DelElem(L, i);
 		}
-		/*if (flog==5)
+		if (flog==5)
 		{
-			InsertElem(&list1);
+			GetLength(L);
 		}
 		if (flog==6)
 		{
-			DelElem(&list1);
-		}*/
+			printf("请问您要获取第几个位置的元素：\n");
+			int num;
+			scanf("%d",&num);
+			GetElem(L, num);
+		}
 		if (flog==7) 
 		{
 			// 退出程序，该函数位于stdlib.h
